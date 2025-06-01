@@ -11,15 +11,12 @@ import blivedm.models.web as web_models
 
 # 直播间ID的取值看直播间URL
 TEST_ROOM_IDS = [
-    12235923,
-    14327465,
-    21396545,
-    21449083,
-    23105590,
+    32212167
 ]
 
 # 这里填一个已登录账号的cookie的SESSDATA字段的值。不填也可以连接，但是收到弹幕的用户名会打码，UID会变成0
-SESSDATA = ''
+# SESSDATA = ''
+SESSDATA = '4f728c34%2C1764164002%2C3e09d%2A51CjBmx4CN3prFBIS4N56b1moL1C_K1kADkJZ6LCeuG7LVuXS8lQxO1KreqVXhizqQUEISVllxZkt5YXF1R2l3R0IwWGVHS1VMQUdRT0ZWQXR6NnNoWmgzUzEyZkxBYjBUbGwxX3BLQmhDSDRHZjV4MTRyWWRibUtMZWQ1Ui05S05scWZLVFJkby1RIIEC'
 
 session: Optional[aiohttp.ClientSession] = None
 
@@ -28,7 +25,7 @@ async def main():
     init_session()
     try:
         await run_single_client()
-        await run_multi_clients()
+        # await run_multi_clients()
     finally:
         await session.close()
 
@@ -55,7 +52,7 @@ async def run_single_client():
     client.start()
     try:
         # 演示5秒后停止
-        await asyncio.sleep(5)
+        await asyncio.sleep(500)
         client.stop()
 
         await client.join()
